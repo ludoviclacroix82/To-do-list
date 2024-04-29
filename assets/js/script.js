@@ -111,7 +111,14 @@ function setItem(name,value){
  * @param {*} title 
  */
 function getItem(title){
-    return  JSON.parse(localStorage.getItem(title));
+    const checkItem = localStorage.getItem(title);
+    
+    if( checkItem !== null)
+        return  JSON.parse(localStorage.getItem(title));
+    else
+        setItem(title,'');
+        return  JSON.parse(localStorage.getItem(title));
+
 }
 
 listingTasks();
