@@ -1,0 +1,61 @@
+@import 'libs/_reset.scss';
+@import 'libs/_fonts.scss';
+@import 'libs/_variables.scss';
+
+
+
+header{
+    width: auto;
+    height: 100px;
+    padding: 50px;
+    background-color: $secondaryColor;
+    h1{
+        @extend .roboto-regular;
+        font-size: 2rem;
+        color:$primaryTextColor;
+    }
+}
+main{
+    width: 100%;
+    min-height: 500px;
+    background-color: $primaryColor;
+
+    section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .todolist{
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #c0c0c0;
+            margin: 50px 0px;
+
+            .header{
+                height: 50px;
+                padding: 10px 20px;
+                h2{
+                    @extend .roboto-regular;
+                font-size: 1.2rem;
+                color:$secondaryTextColor;
+                }                
+            }
+            .add{
+                display: flex;
+                flex-direction: column;
+            }
+            .list{
+                height: 300px;
+                overflow-y: scroll;
+            }
+        }
+        
+    }
+}
+footer{
+    width: auto;
+    height: 100px;
+    padding: 50px;
+    background-color: $secondaryColor;
+}

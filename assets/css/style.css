@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-size: 14px;
+  max-width: 1440px;
+  background-color: #818181;
+  margin: 0 auto; }
+
+a {
+  text-decoration: none;
+  color: #000; }
+
+a:hover, a:visited, a:focus {
+  color: #000; }
+
+.roboto-regular, header h1, main section .todolist .header h2 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal; }
+
+header {
+  width: auto;
+  height: 100px;
+  padding: 50px;
+  background-color: #000; }
+  header h1 {
+    font-size: 2rem;
+    color: #fff; }
+
+main {
+  width: 100%;
+  min-height: 500px;
+  background-color: #fff; }
+  main section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    main section .todolist {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #c0c0c0;
+      margin: 50px 0px; }
+      main section .todolist .header {
+        height: 50px;
+        padding: 10px 20px; }
+        main section .todolist .header h2 {
+          font-size: 1.2rem;
+          color: #000; }
+      main section .todolist .add {
+        display: flex;
+        flex-direction: column; }
+      main section .todolist .list {
+        height: 300px;
+        overflow-y: scroll; }
+
+footer {
+  width: auto;
+  height: 100px;
+  padding: 50px;
+  background-color: #000; }
+
+/*# sourceMappingURL=style.css.map */
