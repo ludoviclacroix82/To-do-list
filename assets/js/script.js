@@ -14,6 +14,79 @@ btnAdd.addEventListener('click', event =>{
    console.log('add task');
 })
 
+function listingTasks(){
+    
+    linstingTasksRefresh();
+
+    tempTaksArray = Array.from(getItem('Tasks'));
+    tempFinishTaksArray = Array.from(getItem('Finish'));
+    let cpt = 0;
+    //console.log("finish",getItem('Finish'));
+
+    for (const task of tempTaksArray) {
+        const elemLi = document.createElement('li');
+    
+        const elemCheckBox = document.createElement('input');
+        elemCheckBox.type = 'checkbox';
+        elemCheckBox.id = cpt;
+    
+        const elemBtn = document.createElement('button');
+        elemBtn.id = cpt;
+        elemBtn.innerText = 'X';
+    
+        ulListTasks.appendChild(elemLi);
+        elemLi.appendChild(elemCheckBox);
+        elemLi.insertAdjacentElement("beforeend",elemBtn);    
+        elemBtn.insertAdjacentText("beforebegin", ' ' + task);
+
+        for (const finish of tempFinishTaksArray) {
+            if(cpt == parseInt(finish))
+                elemCheckBox.checked = true;
+        }
+    
+        cpt++;
+    }
+        /**
+        * ajout une eventlistener sur chaque button des taks 
+        * et lanche la fucntion removetask avec id du button
+        */
+        const btnDelete = listTasks.querySelectorAll('button');
+        for (const btn of btnDelete) {
+            btn.addEventListener('click',event =>{
+                removeTask(event.target.id);
+            });
+        }
+        const btnfinsih = listTasks.querySelectorAll('input[type=checkbox]');
+        for (const btn of btnfinsih) {
+            btn.addEventListener('change',event =>{
+                if(event.target.checked == true){
+                    finishTtaskAdd(event.target.id);                    
+                }else{
+                    finishTtaskRemove(event.target.id);
+                }
+            });
+        }
+        //console.log(tempTaksArray);
+}
+function finishTtaskAdd(id){  
+    tempFinishTaksArray.push(id);
+    setItem('Finish',tempFinishTaksArray); 
+    listingTasks();
+    //console.log(getItem('Finish',tempFinishTaksArray));
+}
+function finishTtaskRemove(id){
+    const finishTaksArray = Array.from(getItem('Finish')); 
+
+    let index = finishTaksArray.indexOf(id);
+    console.log(index);
+    if (index !== -1) {
+        finishTaksArray.splice(index, 1);
+    }
+
+    setItem('Finish',finishTaksArray);   
+    listingTasks();
+}
+
 function addTask(event){
     const task = event.querySelector('#task').value;
     tempTaksArray = Array.from(getItem('Tasks'));        
@@ -23,51 +96,6 @@ function addTask(event){
 
     setItem('Tasks',tempTaksArray ); 
     listingTasks();
-}
-
-function listingTasks(){
-    
-    linstingTasksRefresh();
-
-    tempTaksArray = Array.from(getItem('Tasks'));
-    let cpt = 0;
-
-    for (const task of tempTaksArray) {
-        const elemLi = document.createElement('li');
-        const elemCheckBox = '<input type="checkbox" name="" id="'+cpt+'">';
-        const elemBtn = '<button id='+cpt+'>X</button>';
-        ulListTasks.appendChild(elemLi);
-
-        elemLi.innerHTML = elemCheckBox +" " + task +" "+ elemBtn;
-
-
-        /**
-         * ajout une eventlistener sur chaque button des taks 
-         * et lanche la fucntion removetask avec id du button
-         */
-        
-        cpt ++;
-    }
-
-    const btnDelete = listTasks.querySelectorAll('button');
-    for (const btn of btnDelete) {
-        btn.addEventListener('click',event =>{
-            removeTask(event.target.id);
-        });
-    }
-    const btnfinsih = listTasks.querySelectorAll('input[type=checkbox]');
-    for (const btn of btnfinsih) {
-        btn.addEventListener('change',event =>{
-            finishTtask(event.target.id);
-        });
-    }
-    //console.log(tempTaksArray);
-}
-function finishTtask(id){  
-    tempFinishTaksArray.push(id);
-    setItem('Finish',tempFinishTaksArray); 
-    
-    console.log(getItem('Finish',tempFinishTaksArray));
 }
 /**
  * Supprimer la Task dans le localStorage
@@ -79,12 +107,12 @@ function removeTask(id){
     tempTaksArray = [];   
 
     for (let i = 0; i < TaksArray.length; i++) {
-        console.log(i);
         if(i != parseInt(id))
             tempTaksArray.push(TaksArray[i]);        
     }
-
-    setItem('Tasks',tempTaksArray );     
+  
+    setItem('Tasks',tempTaksArray );   
+    finishTtaskRemove(id);
     listingTasks();
 }
 function linstingTasksRefresh(){
