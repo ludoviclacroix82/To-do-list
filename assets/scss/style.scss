@@ -127,14 +127,15 @@ main{
                         border-radius: 25px;
                         margin-bottom: 10px;
                         padding: 0px 1px;
-                        text-transform:lowercase;
+                        transition: background-color 0.5s;
                         cursor: move;
                         @include Mobile{
                             width: 350px;
                         }                      
 
                         &:hover{
-                            background-color: #87fd98;
+                            background-color: #c0fac9;
+                            transition: background-color 0.5s;
                         }
 
                         input[type=checkbox]{

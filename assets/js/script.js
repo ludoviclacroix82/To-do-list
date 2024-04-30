@@ -10,6 +10,8 @@ const ulListTasks = listTasks.querySelector('ul');
 let tempFinishTaksArray;
 let tempTaksArray;
 let TaksArray;
+let taskString ="";
+let finishStirng = "";
 
 btnAdd.addEventListener('click', event =>{
    event.preventDefault();
@@ -51,16 +53,20 @@ export function listingTasks(){
         elemLi.appendChild(elemCheckBox);
         elemLi.insertAdjacentElement("beforeend",elemBtn); 
         elemLi.appendChild(elemLabel);
-             //check le localstorage finish et ajout un checked au checkbox selectionner
-        for (const finish of tempFinishTaksArray) {
-            if(task == finish){
+        //check le localstorage finish et ajout un checked au checkbox selectionner
+        taskString = task;
+        for (const finish of tempFinishTaksArray) {    
+            if(taskString === finish) {
+               console.log( taskString+"="+finish); 
                 elemCheckBox.checked = true; 
                 const parentElem = elemCheckBox.parentNode
-                parentElem.classList.add('checked');  
-            }                          
+                parentElem.classList.add('checked'); 
+            }      
+                                    
         }
+        console.log(tempFinishTaksArray);
         cpt++;
-    }
+        }
         /**
         * ajout une eventlistener sur chaque button des taks 
         * et lanche la fucntion removetask avec id du button
@@ -78,7 +84,6 @@ export function listingTasks(){
         const btnfinsih = listTasks.querySelectorAll('input[type=checkbox]');
         for (const btn of btnfinsih) {
             btn.addEventListener('change',event =>{
-
                 const labelItem = event.target.parentNode.querySelector('label');
                 if(event.target.checked == true){
                     finishTtaskAdd(labelItem.innerText);
@@ -115,7 +120,7 @@ function finishTtaskAdd(id){
     tempFinishTaksArray.push(id);
     setItem('Finish',tempFinishTaksArray); 
     listingTasks();
-    //console.log(getItem('Finish',tempFinishTaksArray));
+    console.log(getItem('Finish',tempFinishTaksArray));
 }
 /**
  * Supprime id de la task dans le localstorage finish

@@ -124,13 +124,14 @@ main {
             border-radius: 25px;
             margin-bottom: 10px;
             padding: 0px 1px;
-            text-transform: lowercase;
+            transition: background-color 0.5s;
             cursor: move; }
             @media (max-width: 640px) {
               main section .todolist .list ul li {
                 width: 350px; } }
             main section .todolist .list ul li:hover {
-              background-color: #87fd98; }
+              background-color: #c0fac9;
+              transition: background-color 0.5s; }
             main section .todolist .list ul li input[type=checkbox] {
               height: 0;
               width: 0;
