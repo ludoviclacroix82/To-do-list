@@ -57,7 +57,7 @@ export function listingTasks(){
         taskString = task;
         for (const finish of tempFinishTaksArray) {    
             if(taskString === finish) {
-               console.log( taskString+"="+finish); 
+               //console.log( taskString+"="+finish); 
                 elemCheckBox.checked = true; 
                 const parentElem = elemCheckBox.parentNode
                 parentElem.classList.add('checked'); 
