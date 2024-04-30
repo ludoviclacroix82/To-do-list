@@ -40,17 +40,23 @@ function listingTasks(){
         const elemBtn = document.createElement('button');
         elemBtn.id = cpt;
         elemBtn.innerText = 'X';
+        // ajout label
+        const elemLabel = document.createElement('label');
+        elemLabel.innerText = task;
+        elemLabel.htmlFor = cpt;
         // positione les element entre eux
         ulListTasks.appendChild(elemLi);
         elemLi.appendChild(elemCheckBox);
-        elemLi.insertAdjacentElement("beforeend",elemBtn);    
-        elemBtn.insertAdjacentText("beforebegin", ' ' + task);
-        //check le localstorage finish et ajout un checked au checkbox selectionner
+        elemLi.insertAdjacentElement("beforeend",elemBtn); 
+        elemLi.appendChild(elemLabel);
+             //check le localstorage finish et ajout un checked au checkbox selectionner
         for (const finish of tempFinishTaksArray) {
-            if(cpt == parseInt(finish))
-                elemCheckBox.checked = true;
+            if(cpt == parseInt(finish)){
+                elemCheckBox.checked = true; 
+                const parentElem = elemCheckBox.parentNode
+                parentElem.classList.add('checked');   
+            }                            
         }
-    
         cpt++;
     }
         /**
@@ -71,7 +77,7 @@ function listingTasks(){
         for (const btn of btnfinsih) {
             btn.addEventListener('change',event =>{
                 if(event.target.checked == true){
-                    finishTtaskAdd(event.target.id);                    
+                    finishTtaskAdd(event.target.id);
                 }else{
                     finishTtaskRemove(event.target.id);
                 }
