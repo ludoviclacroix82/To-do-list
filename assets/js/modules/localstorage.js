@@ -4,7 +4,6 @@
  * @param {*} value detail de la task
  */
 export function setItem(name,value){
-    //console.log('ajout task');    
     return localStorage.setItem(name,JSON.stringify(value));
 }
 /**

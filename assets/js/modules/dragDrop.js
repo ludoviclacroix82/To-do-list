@@ -29,7 +29,6 @@ export  function handleDragEnd(e) {
     }
     setItem('Tasks',dragArray ); 
     location.reload();
-    //console.log(dragArray);         
 }
 
 export function handleDragOver(e) {

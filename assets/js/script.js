@@ -17,7 +17,6 @@ btnAdd.addEventListener('click', event =>{
    event.preventDefault();
    addTask(event.target.parentNode);
 
-   console.log('add task');
 })
 /**
  * Liste les Tasks + ajoute un button et un checkbox
@@ -29,7 +28,6 @@ export function listingTasks(){
     tempTaksArray = Array.from(getItem('Tasks'));
     tempFinishTaksArray = Array.from(getItem('Finish'));
     let cpt = 0;
-    //console.log("finish",getItem('Finish'));
 
     for (const task of tempTaksArray) {
         const elemLi = document.createElement('li');
@@ -57,14 +55,11 @@ export function listingTasks(){
         taskString = task;
         for (const finish of tempFinishTaksArray) {    
             if(taskString === finish) {
-               //console.log( taskString+"="+finish); 
                 elemCheckBox.checked = true; 
                 const parentElem = elemCheckBox.parentNode
                 parentElem.classList.add('checked'); 
-            }      
-                                    
+            }                      
         }
-        console.log(tempFinishTaksArray);
         cpt++;
         }
         /**
@@ -74,7 +69,7 @@ export function listingTasks(){
         const btnDelete = listTasks.querySelectorAll('button');
         for (const btn of btnDelete) {
             btn.addEventListener('click',event =>{
-                removeTask(event.target.id);
+                removeTask(event.target.id,taskString);
             });
         }
         /**
@@ -87,13 +82,11 @@ export function listingTasks(){
                 const labelItem = event.target.parentNode.querySelector('label');
                 if(event.target.checked == true){
                     finishTtaskAdd(labelItem.innerText);
-                    //console.log('add checb');
                 }else{
                     finishTtaskRemove(labelItem.innerText);
                 }
             });
         }
-        //console.log(tempTaksArray);
         // drag and drop
         let Dragitems = ulListTasks.querySelectorAll('li');
         dragDrop(Dragitems);     
@@ -120,7 +113,6 @@ function finishTtaskAdd(id){
     tempFinishTaksArray.push(id);
     setItem('Finish',tempFinishTaksArray); 
     listingTasks();
-    console.log(getItem('Finish',tempFinishTaksArray));
 }
 /**
  * Supprime id de la task dans le localstorage finish
@@ -131,7 +123,6 @@ function finishTtaskRemove(id){
 
     // verifie la position de 'id dans le array et le supprime
     let index = finishTaksArray.indexOf(id);
-    console.log(index);
     if (index !== -1) {
         finishTaksArray.splice(index, 1);
     }
@@ -158,7 +149,7 @@ function addTask(event){
  * liste le localStorage et delete la task en fonction du id
  * @param {*} id du task a delete
  */
-function removeTask(id){
+function removeTask(id,finishItem){
     TaksArray = Array.from(getItem('Tasks')); 
     tempTaksArray = [];   
 
@@ -168,7 +159,7 @@ function removeTask(id){
     }
   
     setItem('Tasks',tempTaksArray );   
-    finishTtaskRemove(id);
+    finishTtaskRemove(finishItem);
     listingTasks();
 } 
 /**
