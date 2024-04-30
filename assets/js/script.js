@@ -115,7 +115,7 @@ function finishTtaskAdd(id){
     tempFinishTaksArray.push(id);
     setItem('Finish',tempFinishTaksArray); 
     listingTasks();
-    console.log(getItem('Finish',tempFinishTaksArray));
+    //console.log(getItem('Finish',tempFinishTaksArray));
 }
 /**
  * Supprime id de la task dans le localstorage finish
