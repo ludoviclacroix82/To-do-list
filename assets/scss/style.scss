@@ -1,6 +1,7 @@
 @import 'libs/_reset.scss';
 @import 'libs/_fonts.scss';
 @import 'libs/_variables.scss';
+@import 'libs/_mediaQueries.scss';
 
 
 
@@ -26,35 +27,53 @@ main{
         justify-content: center;
 
         .todolist{
-            width: 400px;
+            width: 600px;
             display: flex;
             flex-direction: column;
             border: 1px solid #c0c0c0;
             margin: 50px 0px;
 
+            @include Mobile{
+                width: 400px;
+            }
+
             .header{
-                height: 100px;
+                height: 200px;
                 padding: 10px 20px;
                 background-image: url(../../assets/images/todolist.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
-                background-position: center;              
+                background-position: center;  
+                @include Mobile{
+                    height: 100px;
+                }            
             }
             .add{
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 padding: 10px 20px;
+                @include Mobile{
+                    flex-direction: column;
+                }
+
                 label{
                     @extend .roboto-regular;
                     font-size: 1rem;
                     color:$secondaryTextColor;
-                    padding: 5px 0px;
+                    padding: 5px 5px;
                 }
                 input{
-                    width: 360px;
+                    width: 400px;
                     height: 25px;
                     margin-bottom: 10px;
+
+                    @include Mobile{
+                        width: 360px;
+                    }
                     &[type=submit]{
+                        width: 150px;
+                        height: 28px;
+                        margin: 0px auto;
                         border:1px solid #c0c0c0;
                         @extend .roboto-regular;
                         font-size: 1rem;
@@ -66,6 +85,10 @@ main{
                             border:1px solid #87fd98;
                             transition: all 0.8s;
                         }
+                        @include Mobile{
+                            margin: 0;
+                            width: 363px;
+                        }
                     }
                 }
             }
@@ -75,19 +98,23 @@ main{
                 scrollbar-color: #c0c0c0 $primaryColor;
                 scrollbar-width: thin;
                 ul{
-                    width: 90%;
+                    width: 550px;
                     height: 90%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     padding: 50px 0px;
+                    margin: 0 auto;
                     .checked{
                         background-color: #87fd98;
+                    }
+                    @include Mobile{
+                        width: 350px;
                     }
                     li{
                         @extend .roboto-regular;
                         list-style: none;
-                        width: 90%;
+                        width: 550px;
                         min-height: 30px;
                         display: flex;
                         flex-direction: row;
@@ -98,7 +125,9 @@ main{
                         margin-bottom: 10px;
                         padding: 0px 1px;
                         text-transform:lowercase;
-                       
+                        @include Mobile{
+                            width: 350px;
+                        }                      
 
                         &:hover{
                             background-color: #87fd98;
@@ -113,10 +142,13 @@ main{
                             }   
                         } 
                         label{
-                            width: 100%;
-                            min-height: 30px;
+                            width: calc(550px - 25px);
                             display: flex;
                             align-items: center;
+                            overflow: hidden;
+                            @include Mobile{
+                                width: 350px;
+                            }
                         }
                         button{
                             width: 25px;

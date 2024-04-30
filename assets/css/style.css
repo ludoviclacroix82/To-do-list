@@ -39,31 +39,46 @@ main {
     flex-direction: row;
     justify-content: center; }
     main section .todolist {
-      width: 400px;
+      width: 600px;
       display: flex;
       flex-direction: column;
       border: 1px solid #c0c0c0;
       margin: 50px 0px; }
+      @media (max-width: 640px) {
+        main section .todolist {
+          width: 400px; } }
       main section .todolist .header {
-        height: 100px;
+        height: 200px;
         padding: 10px 20px;
         background-image: url(../../assets/images/todolist.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center; }
+        @media (max-width: 640px) {
+          main section .todolist .header {
+            height: 100px; } }
       main section .todolist .add {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         padding: 10px 20px; }
+        @media (max-width: 640px) {
+          main section .todolist .add {
+            flex-direction: column; } }
         main section .todolist .add label {
           font-size: 1rem;
           color: #000;
-          padding: 5px 0px; }
+          padding: 5px 5px; }
         main section .todolist .add input {
-          width: 360px;
+          width: 400px;
           height: 25px;
           margin-bottom: 10px; }
+          @media (max-width: 640px) {
+            main section .todolist .add input {
+              width: 360px; } }
           main section .todolist .add input[type=submit] {
+            width: 150px;
+            height: 28px;
+            margin: 0px auto;
             border: 1px solid #c0c0c0;
             font-size: 1rem;
             color: #000;
@@ -73,23 +88,31 @@ main {
               background-color: #87fd98;
               border: 1px solid #87fd98;
               transition: all 0.8s; }
+            @media (max-width: 640px) {
+              main section .todolist .add input[type=submit] {
+                margin: 0;
+                width: 363px; } }
       main section .todolist .list {
         height: 300px;
         overflow-y: scroll;
         scrollbar-color: #c0c0c0 #fff;
         scrollbar-width: thin; }
         main section .todolist .list ul {
-          width: 90%;
+          width: 550px;
           height: 90%;
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 50px 0px; }
+          padding: 50px 0px;
+          margin: 0 auto; }
           main section .todolist .list ul .checked {
             background-color: #87fd98; }
+          @media (max-width: 640px) {
+            main section .todolist .list ul {
+              width: 350px; } }
           main section .todolist .list ul li {
             list-style: none;
-            width: 90%;
+            width: 550px;
             min-height: 30px;
             display: flex;
             flex-direction: row;
@@ -100,6 +123,9 @@ main {
             margin-bottom: 10px;
             padding: 0px 1px;
             text-transform: lowercase; }
+            @media (max-width: 640px) {
+              main section .todolist .list ul li {
+                width: 350px; } }
             main section .todolist .list ul li:hover {
               background-color: #87fd98; }
             main section .todolist .list ul li input[type=checkbox] {
@@ -109,10 +135,13 @@ main {
               main section .todolist .list ul li input[type=checkbox]:checked + label {
                 background-color: #87fd98; }
             main section .todolist .list ul li label {
-              width: 100%;
-              min-height: 30px;
+              width: calc(550px - 25px);
               display: flex;
-              align-items: center; }
+              align-items: center;
+              overflow: hidden; }
+              @media (max-width: 640px) {
+                main section .todolist .list ul li label {
+                  width: 350px; } }
             main section .todolist .list ul li button {
               width: 25px;
               height: 25px;
