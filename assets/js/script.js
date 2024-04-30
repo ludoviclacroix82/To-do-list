@@ -6,8 +6,9 @@ const btnAdd = divAdd.querySelector('#btnSubmit');
 const listTasks = document.querySelector('.list');
 const ulListTasks = listTasks.querySelector('ul');
 
-let tasksArray = [];
-let tempFinishTaksArray =[];
+let tempFinishTaksArray;
+let tempTaksArray;
+let TaksArray;
 
 btnAdd.addEventListener('click', event =>{
    event.preventDefault();
@@ -19,6 +20,7 @@ btnAdd.addEventListener('click', event =>{
  * Liste les Tasks + ajoute un button et un checkbox
  */
 function listingTasks(){
+
     
     linstingTasksRefresh();
 
