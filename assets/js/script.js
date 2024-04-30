@@ -1,4 +1,5 @@
 import { setItem, getItem } from './modules/localstorage.js';
+import { handleDragStart, handleDragEnd ,handleDragOver ,handleDragEnter ,handleDragLeave, handleDrop } from './modules/dragDrop.js';
 
 
 const divAdd = document.querySelector('.add');
@@ -46,6 +47,8 @@ function listingTasks(){
         elemLabel.htmlFor = cpt;
         // positione les element entre eux
         ulListTasks.appendChild(elemLi);
+        elemLi.id=cpt;
+        elemLi.draggable = true;
         elemLi.appendChild(elemCheckBox);
         elemLi.insertAdjacentElement("beforeend",elemBtn); 
         elemLi.appendChild(elemLabel);
@@ -84,6 +87,16 @@ function listingTasks(){
             });
         }
         //console.log(tempTaksArray);
+        // drag and drop
+        let Dragitems = ulListTasks.querySelectorAll('li');
+        Dragitems.forEach(function (dragItem) {
+            dragItem.addEventListener('dragstart', handleDragStart);
+            dragItem.addEventListener('dragover', handleDragOver);
+            dragItem.addEventListener('dragenter', handleDragEnter);
+            dragItem.addEventListener('dragleave', handleDragLeave);
+            dragItem.addEventListener('dragend', handleDragEnd);
+            dragItem.addEventListener('drop', handleDrop);
+        });
 }
 /**
  * Ajout id de la task dans le localstorage finish

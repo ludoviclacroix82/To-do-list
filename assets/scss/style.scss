@@ -108,6 +108,9 @@ main{
                     .checked{
                         background-color: #87fd98;
                     }
+                    .over {
+                        border: 3px dotted #666;
+                    }
                     @include Mobile{
                         width: 350px;
                     }
@@ -125,6 +128,7 @@ main{
                         margin-bottom: 10px;
                         padding: 0px 1px;
                         text-transform:lowercase;
+                        cursor: move;
                         @include Mobile{
                             width: 350px;
                         }                      
