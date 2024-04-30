@@ -139,6 +139,7 @@ main {
                 background-color: #87fd98; }
             main section .todolist .list ul li label {
               width: calc(550px - 25px);
+              min-height: 30px;
               display: flex;
               align-items: center;
               overflow: hidden; }

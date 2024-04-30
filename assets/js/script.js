@@ -20,9 +20,8 @@ btnAdd.addEventListener('click', event =>{
 /**
  * Liste les Tasks + ajoute un button et un checkbox
  */
-function listingTasks(){
+export function listingTasks(){
 
-    
     linstingTasksRefresh();
 
     tempTaksArray = Array.from(getItem('Tasks'));
@@ -36,7 +35,7 @@ function listingTasks(){
         // Ajout du checkbox
         const elemCheckBox = document.createElement('input');
         elemCheckBox.type = 'checkbox';
-        elemCheckBox.id = "checkbox"+ cpt;
+        elemCheckBox.id = cpt;
         //ajout du button
         const elemBtn = document.createElement('button');
         elemBtn.id = cpt;
@@ -44,21 +43,21 @@ function listingTasks(){
         // ajout label
         const elemLabel = document.createElement('label');
         elemLabel.innerText = task;
-        elemLabel.htmlFor = "checkbox"+ cpt;
+        elemLabel.htmlFor = cpt;
         // positione les element entre eux
         ulListTasks.appendChild(elemLi);
-        elemLi.id=cpt;
+        elemLi.id='drag'+cpt;
         elemLi.draggable = true;
         elemLi.appendChild(elemCheckBox);
         elemLi.insertAdjacentElement("beforeend",elemBtn); 
         elemLi.appendChild(elemLabel);
              //check le localstorage finish et ajout un checked au checkbox selectionner
         for (const finish of tempFinishTaksArray) {
-            if(cpt == parseInt(finish)){
+            if(task == finish){
                 elemCheckBox.checked = true; 
                 const parentElem = elemCheckBox.parentNode
-                parentElem.classList.add('checked');   
-            }                            
+                parentElem.classList.add('checked');  
+            }                          
         }
         cpt++;
     }
@@ -79,25 +78,34 @@ function listingTasks(){
         const btnfinsih = listTasks.querySelectorAll('input[type=checkbox]');
         for (const btn of btnfinsih) {
             btn.addEventListener('change',event =>{
+
+                const labelItem = event.target.parentNode.querySelector('label');
                 if(event.target.checked == true){
-                    finishTtaskAdd(event.target.id);
+                    finishTtaskAdd(labelItem.innerText);
+                    //console.log('add checb');
                 }else{
-                    finishTtaskRemove(event.target.id);
+                    finishTtaskRemove(labelItem.innerText);
                 }
             });
         }
         //console.log(tempTaksArray);
         // drag and drop
         let Dragitems = ulListTasks.querySelectorAll('li');
-        Dragitems.forEach(function (dragItem) {
-            dragItem.addEventListener('dragstart', handleDragStart);
-            dragItem.addEventListener('dragover', handleDragOver);
-            dragItem.addEventListener('dragenter', handleDragEnter);
-            dragItem.addEventListener('dragleave', handleDragLeave);
-            dragItem.addEventListener('dragend', handleDragEnd);
-            dragItem.addEventListener('drop', handleDrop);
-            listingTasks();
-        });
+        dragDrop(Dragitems);     
+}
+/**
+ * Fonction du dragand drop
+ * @param {*} Dragitems 
+ */
+function dragDrop(Dragitems){
+    Dragitems.forEach(function (dragItem) {
+        dragItem.addEventListener('dragstart', handleDragStart);
+        dragItem.addEventListener('dragover', handleDragOver);
+        dragItem.addEventListener('dragenter', handleDragEnter);
+        dragItem.addEventListener('dragleave', handleDragLeave);
+        dragItem.addEventListener('dragend', handleDragEnd);
+        dragItem.addEventListener('drop', handleDrop);
+    });
 }
 /**
  * Ajout id de la task dans le localstorage finish
@@ -107,7 +115,7 @@ function finishTtaskAdd(id){
     tempFinishTaksArray.push(id);
     setItem('Finish',tempFinishTaksArray); 
     listingTasks();
-    //console.log(getItem('Finish',tempFinishTaksArray));
+    console.log(getItem('Finish',tempFinishTaksArray));
 }
 /**
  * Supprime id de la task dans le localstorage finish

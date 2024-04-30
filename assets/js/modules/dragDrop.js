@@ -28,9 +28,8 @@ export  function handleDragEnd(e) {
         dragArray.push(labelChildern.innerHTML);
     }
     setItem('Tasks',dragArray ); 
-    //console.log(dragArray); 
-    
-    
+    location.reload();
+    //console.log(dragArray);         
 }
 
 export function handleDragOver(e) {

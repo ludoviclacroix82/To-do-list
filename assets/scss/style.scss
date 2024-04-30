@@ -147,6 +147,7 @@ main{
                         } 
                         label{
                             width: calc(550px - 25px);
+                            min-height: 30px;
                             display: flex;
                             align-items: center;
                             overflow: hidden;
