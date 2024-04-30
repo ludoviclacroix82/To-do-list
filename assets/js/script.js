@@ -1,3 +1,5 @@
+import { setItem, getItem } from './modules/localstorage.js';
+
 
 const divAdd = document.querySelector('.add');
 const btnAdd = divAdd.querySelector('#btnSubmit');
@@ -147,28 +149,6 @@ function linstingTasksRefresh(){
         ulListTasks.removeChild(li);
     }
 }
-/**
- * Ajout dans le localStorage
- * @param {*} name nom de ta task
- * @param {*} value detail de la task
- */
-function setItem(name,value){
-    //console.log('ajout task');    
-    return localStorage.setItem(name,JSON.stringify(value));
-}
-/**
- * recupere l'info dans le LocalStorage
- * @param {*} title 
- */
-function getItem(title){
-    const checkItem = localStorage.getItem(title);
-    
-    if( checkItem !== null)
-        return  JSON.parse(localStorage.getItem(title));
-    else
-        setItem(title,'');
-        return  JSON.parse(localStorage.getItem(title));
 
-}
 
 listingTasks();
