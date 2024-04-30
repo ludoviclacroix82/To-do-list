@@ -13,7 +13,9 @@ btnAdd.addEventListener('click', event =>{
 
    console.log('add task');
 })
-
+/**
+ * Liste les Tasks + ajoute un button et un checkbox
+ */
 function listingTasks(){
     
     linstingTasksRefresh();
@@ -26,19 +28,20 @@ function listingTasks(){
     for (const task of tempTaksArray) {
         const elemLi = document.createElement('li');
     
+        // Ajout du checkbox
         const elemCheckBox = document.createElement('input');
         elemCheckBox.type = 'checkbox';
         elemCheckBox.id = cpt;
-    
+        //ajout du button
         const elemBtn = document.createElement('button');
         elemBtn.id = cpt;
         elemBtn.innerText = 'X';
-    
+        // positione les element entre eux
         ulListTasks.appendChild(elemLi);
         elemLi.appendChild(elemCheckBox);
         elemLi.insertAdjacentElement("beforeend",elemBtn);    
         elemBtn.insertAdjacentText("beforebegin", ' ' + task);
-
+        //check le localstorage finish et ajout un checked au checkbox selectionner
         for (const finish of tempFinishTaksArray) {
             if(cpt == parseInt(finish))
                 elemCheckBox.checked = true;
@@ -56,6 +59,10 @@ function listingTasks(){
                 removeTask(event.target.id);
             });
         }
+        /**
+        * ajout une eventlistener sur chaque checkbox des taks 
+        * et lanche la fucntion removetask avec id du button
+        */
         const btnfinsih = listTasks.querySelectorAll('input[type=checkbox]');
         for (const btn of btnfinsih) {
             btn.addEventListener('change',event =>{
@@ -68,15 +75,24 @@ function listingTasks(){
         }
         //console.log(tempTaksArray);
 }
+/**
+ * Ajout id de la task dans le localstorage finish
+ * @param {*} id de la task
+ */
 function finishTtaskAdd(id){  
     tempFinishTaksArray.push(id);
     setItem('Finish',tempFinishTaksArray); 
     listingTasks();
     //console.log(getItem('Finish',tempFinishTaksArray));
 }
+/**
+ * Supprime id de la task dans le localstorage finish
+ * @param {*} id de la task
+ */
 function finishTtaskRemove(id){
     const finishTaksArray = Array.from(getItem('Finish')); 
 
+    // verifie la position de 'id dans le array et le supprime
     let index = finishTaksArray.indexOf(id);
     console.log(index);
     if (index !== -1) {
@@ -86,7 +102,10 @@ function finishTtaskRemove(id){
     setItem('Finish',finishTaksArray);   
     listingTasks();
 }
-
+/**
+ * ajout un task dans le localstorage Task
+ * @param {*} event eevnt du eventlistener 
+ */
 function addTask(event){
     const task = event.querySelector('#task').value;
     tempTaksArray = Array.from(getItem('Tasks'));        
@@ -114,7 +133,10 @@ function removeTask(id){
     setItem('Tasks',tempTaksArray );   
     finishTtaskRemove(id);
     listingTasks();
-}
+} 
+/**
+ * Refresh le listing en supprimeant les Li 
+ */
 function linstingTasksRefresh(){
     
     const liTasks = ulListTasks.querySelectorAll('li');
