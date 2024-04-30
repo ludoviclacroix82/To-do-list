@@ -28,8 +28,8 @@ export  function handleDragEnd(e) {
         dragArray.push(labelChildern.innerHTML);
     }
     setItem('Tasks',dragArray ); 
-    console.log(dragArray); 
-
+    //console.log(dragArray); 
+    
     
 }
 

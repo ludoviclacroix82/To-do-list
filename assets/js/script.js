@@ -36,7 +36,7 @@ function listingTasks(){
         // Ajout du checkbox
         const elemCheckBox = document.createElement('input');
         elemCheckBox.type = 'checkbox';
-        elemCheckBox.id = cpt;
+        elemCheckBox.id = "checkbox"+ cpt;
         //ajout du button
         const elemBtn = document.createElement('button');
         elemBtn.id = cpt;
@@ -44,7 +44,7 @@ function listingTasks(){
         // ajout label
         const elemLabel = document.createElement('label');
         elemLabel.innerText = task;
-        elemLabel.htmlFor = cpt;
+        elemLabel.htmlFor = "checkbox"+ cpt;
         // positione les element entre eux
         ulListTasks.appendChild(elemLi);
         elemLi.id=cpt;
@@ -96,6 +96,7 @@ function listingTasks(){
             dragItem.addEventListener('dragleave', handleDragLeave);
             dragItem.addEventListener('dragend', handleDragEnd);
             dragItem.addEventListener('drop', handleDrop);
+            listingTasks();
         });
 }
 /**
