@@ -1,17 +1,25 @@
-# To do list
+# To Do List
 
-## Les consignes
-<a href="https://github.com/becodeorg/CRL-KELLER-7/tree/main/2.PROJECTS/4.To-do-list">(https://github.com/becodeorg/CRL-KELLER-7/tree/main/2.PROJECTS/4.To-do-list)</a>
+## Purpose
 
-## Langages Utilisés
+The purpose of this project exercise is to work on the local storage, DOM manipulation with JavaScript, and implementing a free drag-and-drop interaction.
+
+## Instructions
+
+The link to the instructions is available [here](https://github.com/becodeorg/CRL-KELLER-7/tree/main/2.PROJECTS/4.To-do-list).
+
+## Languages Used
+
 - Semantic HTML, SCSS
 - Usage of BEM Methodology
 - Responsive design
-- Javascript
+- JavaScript
 - The DOM
 - Event listeners
 
 ## GitHub Page 
-<a href="https://ludoviclacroix82.github.io/To-do-list/">To do List</a>
-<img src="Webscreen.png">
+
+You can access the project on GitHub Pages [here](https://ludoviclacroix82.github.io/To-do-list/).
+
+![Project Screenshot](Webscreen.png)
 
